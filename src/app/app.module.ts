@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ListCardsComponent } from './components/list-cards/list-cards.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListCardsComponent
   ],
   imports: [
     BrowserModule,
