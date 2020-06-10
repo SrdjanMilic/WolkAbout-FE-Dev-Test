@@ -1,1 +1,12 @@
-<p>list-cards works!</p>
+<div class="container" fxLayoutGap="1%">
+  <mat-card class="card" *ngFor="let card of cardsService.data">
+    <mat-card-title>
+      <h2>{{ card.name }}</h2>
+      <p class="small">{{ card.path }}</p>
+      <p class="small">@{{ card.lastUpdate | date:"HH:mm"}}</p>
+      <img class="svg" src="../../../assets/{{ card.image }}">
+      <p class="value">{{ card.value }}</p>
+      <p class="symbol">{{ card.unitSymbol }}</p>
+    </mat-card-title>
+  </mat-card>
+</div>
