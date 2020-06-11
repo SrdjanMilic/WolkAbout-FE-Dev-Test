@@ -1,5 +1,13 @@
+<mat-form-field class="search-form">
+  <mat-label>Search Here</mat-label>
+  <input matInput type="text" [(ngModel)]="term">
+  <button class="btn-clear" mat-button *ngIf="term" matSuffix mat-icon-button aria-label="Clear" (click)="term=''">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
 <div class="container" fxLayout="row wrap" fxLayoutGap="1%">
-  <mat-card class="card" *ngFor="let card of cardsService.data">
+  <mat-card class="card" *ngFor="let card of cardsService.data | filter:term">
     <mat-card-title>
       <h2>{{ card.name }}</h2>
       <p class="small">{{ card.path }}</p>

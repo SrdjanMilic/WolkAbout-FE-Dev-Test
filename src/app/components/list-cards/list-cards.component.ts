@@ -7,11 +7,11 @@ import { CardsService } from '../../services/cards.service';
   styleUrls: ['./list-cards.component.sass']
 })
 export class ListCardsComponent implements OnInit {
+  term: string;
 
   constructor(public cardsService: CardsService) { }
 
   ngOnInit(): void {
     this.cardsService.listCards();
   }
-
 }
