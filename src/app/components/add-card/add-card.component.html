@@ -1,0 +1,31 @@
+<div class="form-container" fxLayoutAlign="center">
+
+  <form [formGroup]="createCardForm" (ngSubmit)="onSubmit()" fxLayout="column">
+
+    <mat-form-field class="form-field">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Path</mat-label>
+      <input matInput type="text" formControlName="path" required>
+    </mat-form-field>
+    
+    <mat-form-field class="form-field">
+      <mat-label>Value</mat-label>
+      <input matInput type="text" formControlName="value" required>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Unit Symbol</mat-label>
+      <input matInput type="text" formControlName="unitSymbol" required>
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button class="btn-submit" mat-flat-button color="primary" type="submit" [disabled]="!createCardForm.valid">Submit</button>
+    </mat-card-actions>
+
+  </form>
+
+</div>
