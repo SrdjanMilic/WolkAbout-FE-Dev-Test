@@ -1,3 +1,11 @@
+.toolbar
+  a
+    text-decoration: none
+    color: white
+
+.material-icons
+  font-size: 37px
+  
 .search-form
   margin: 1% 0 0 1%
 
@@ -9,7 +17,6 @@
     .mat-icon
       font-size: 100%
 
-
 .container
   margin: 0 1% 1% 1%
 
@@ -18,10 +25,22 @@
     max-width: 480px
     height: 240px
     margin-bottom: 1%
+
+    a
+      color: inherit
+      margin-right: 5px
+
+    span:last-child
+      cursor: pointer
     
     h2
       margin: 0 !important
       color: inherit
+
+    .action-icons
+      float: right
+      .material-icons
+        font-size: 25px
 
     .small
       color: #bcbcbc
@@ -51,3 +70,14 @@
     .symbol
       bottom: 0
       font-size: 85%
+
+.form-container
+  margin-top: 3%
+
+  .mat-form-field
+    width: 520px
+    @media screen and (max-width: 600px)
+      width: 280px
+  
+  .btn-submit
+    float: right
