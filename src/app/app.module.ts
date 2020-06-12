@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 // Components
@@ -20,11 +20,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { AddCardComponent } from './components/add-card/add-card.component';
+import { EditCardComponent } from './components/edit-card/edit-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListCardsComponent
+    ListCardsComponent,
+    AddCardComponent,
+    EditCardComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +43,7 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule,
     Ng2SearchPipeModule
   ],
   providers: [],
