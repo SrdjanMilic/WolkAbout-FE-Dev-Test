@@ -1,5 +1,12 @@
-<mat-toolbar class="toolbar" color="primary" role="heading">
-  <h1>Sensors</h1>
+<mat-toolbar class="toolbar" color="primary" role="heading" fxLayoutAlign="space-between center">
+  <a routerLink="/list-cards">
+    <h1>Sensors</h1>
+  </a>
+  <a routerLink="/add-card">
+    <span class="material-icons">
+      add_box
+    </span>
+  </a>
 </mat-toolbar>
 
-<app-list-cards></app-list-cards>
+<router-outlet></router-outlet>
