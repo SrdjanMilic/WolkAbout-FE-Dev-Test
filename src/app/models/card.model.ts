@@ -4,6 +4,6 @@ export interface Card {
   image: string;
   path: string;
   unitSymbol: symbol;
-  value: number;
+  value: any;
   lastUpdate: string;
 }
