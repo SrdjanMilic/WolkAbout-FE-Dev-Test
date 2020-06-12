@@ -35,7 +35,7 @@ export class CardsService {
 
   editCard(card: Card) {
     return this.http
-      .put(this.API_SERVER, card)
+      .put(`${this.API_SERVER}/${card.id}`, card)
       .subscribe(() => {
         this.snackBar.open('Card is updated!', '', {
           duration: 2000,
