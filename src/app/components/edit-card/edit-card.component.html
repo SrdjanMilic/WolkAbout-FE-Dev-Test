@@ -1,3 +1,9 @@
+<a routerLink="/list-cards">
+  <button class="btn-back" mat-mini-fab color="primary" aria-label="Back button">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</a>
+
 <div class="form-container" fxLayoutAlign="center">
 
   <mat-card>
@@ -6,7 +12,7 @@
   
       <mat-form-field class="form-field">
         <mat-label>ID</mat-label>
-        <input matInput type="text" formControlName="id" required>
+        <input matInput type="text" formControlName="id" id="id" required>
       </mat-form-field>
   
       <mat-form-field class="form-field">
@@ -35,7 +41,7 @@
       </mat-form-field>
   
       <mat-card-actions>
-        <button class="btn-submit" mat-flat-button color="primary" type="submit">Submit</button>
+        <button class="btn-submit" mat-flat-button color="primary" type="submit" [disabled]="!editCardForm.valid">Submit</button>
       </mat-card-actions>
   
     </form>
