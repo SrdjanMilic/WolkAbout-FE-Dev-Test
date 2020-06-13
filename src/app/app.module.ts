@@ -22,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { AddCardComponent } from './components/add-card/add-card.component';
 import { EditCardComponent } from './components/edit-card/edit-card.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { EditCardComponent } from './components/edit-card/edit-card.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
     Ng2SearchPipeModule
