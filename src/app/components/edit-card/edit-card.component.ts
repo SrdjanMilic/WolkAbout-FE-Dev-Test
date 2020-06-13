@@ -1,29 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CardsService } from '../../services/cards.service';
+import { CardService } from '../../services/card.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-card',
   templateUrl: './edit-card.component.html',
   styleUrls: ['./edit-card.component.sass']
 })
-export class EditCardComponent implements OnInit {
+export class EditCardComponent  {
 
-  constructor(public cardsService: CardsService, private fb: FormBuilder) { }
+  constructor(public cardService: CardService, private fb: FormBuilder, public snackBar: MatSnackBar) { }
 
   editCardForm = this.fb.group({
     id: ['', Validators.required],
     name: ['', Validators.required],
     path: ['', Validators.required],
     value: ['', Validators.required],
-    unitSymbol: ['', Validators.required]
+    unitSymbol: ['', Validators.required],
+    type: ['', Validators.required]
   });
 
-  ngOnInit(): void {
-  }
-
   onSubmit() {
-    this.cardsService.editCard(this.editCardForm.value);
-    console.log(`${JSON.stringify(this.editCardForm.value)}`);
+    this.cardService.editCard(this.editCardForm.value)
+      .subscribe(() => {
+        this.snackBar.open('Card is updated!', '', {
+          duration: 2000,
+        });
+      },
+        error => this.snackBar.open('Error: ' + error, '', {
+          duration: 2000,
+        })
+      );
   }
 }
