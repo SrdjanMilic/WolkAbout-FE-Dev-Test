@@ -1,0 +1,8 @@
+<h2>{{ data.title }}</h2>
+
+<p>{{ data.message }}</p>
+
+<div mat-dialog-actions class="btn-dialog">
+  <button mat-button (click)="onDismiss()">No</button>
+  <button mat-flat-button color="primary" (click)="onConfirm()">Yes</button>
+</div>
