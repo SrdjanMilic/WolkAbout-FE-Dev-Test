@@ -1,9 +1,10 @@
-export interface Card {
+export class Card {
   id: string;
   name: string;
   image: string;
   path: string;
-  unitSymbol: symbol;
+  unitSymbol: string;
   value: any;
-  lastUpdate: string;
+  lastUpdate: Date;
+  type: string;
 }
