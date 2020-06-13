@@ -12,6 +12,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 // Components
 import { ListCardsComponent } from './components/list-cards/list-cards.component';
+import { AddCardComponent } from './components/add-card/add-card.component';
+import { EditCardComponent } from './components/edit-card/edit-card.component';
+import { ConfirmDialogComponent } from './components/shared/confirm-dialog/confirm-dialog.component';
 
 // Material Design Modules
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -20,16 +23,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { AddCardComponent } from './components/add-card/add-card.component';
-import { EditCardComponent } from './components/edit-card/edit-card.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListCardsComponent,
     AddCardComponent,
-    EditCardComponent
+    EditCardComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -44,11 +47,13 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     Ng2SearchPipeModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmDialogComponent]
 })
 export class AppModule { }
