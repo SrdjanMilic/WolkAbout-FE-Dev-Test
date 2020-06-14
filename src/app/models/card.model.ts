@@ -1,10 +1,10 @@
 export class Card {
-  id: string;
+  id: number;
   name: string;
   image: string;
   path: string;
   unitSymbol: string;
   value: any;
-  lastUpdate: Date;
+  lastUpdate: number;
   type: string;
 }
