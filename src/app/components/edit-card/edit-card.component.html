@@ -11,13 +11,13 @@
     <form [formGroup]="editCardForm" (ngSubmit)="onSubmit()" fxLayout="column">
   
       <mat-form-field class="form-field">
-        <mat-label>ID</mat-label>
-        <input matInput type="text" formControlName="id" id="id" required>
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" required>
       </mat-form-field>
   
       <mat-form-field class="form-field">
-        <mat-label>Name</mat-label>
-        <input matInput type="text" formControlName="name" required>
+        <mat-label>Image</mat-label>
+        <input matInput type="text" formControlName="image" placeholder="heart.svg" required>
       </mat-form-field>
   
       <mat-form-field class="form-field">
