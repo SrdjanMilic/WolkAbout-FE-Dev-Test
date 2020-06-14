@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CardService } from '../../services/card.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -8,28 +8,39 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './edit-card.component.html',
   styleUrls: ['./edit-card.component.sass']
 })
-export class EditCardComponent  {
+export class EditCardComponent implements OnInit {
 
-  constructor(public cardService: CardService, private fb: FormBuilder, public snackBar: MatSnackBar) { }
+  editCardForm: FormGroup;
 
-  editCardForm = this.fb.group({
-    id: ['', Validators.required],
-    name: ['', Validators.required],
-    path: ['', Validators.required],
-    value: ['', Validators.required],
-    unitSymbol: ['', Validators.required],
-    type: ['', Validators.required]
-  });
+  constructor(public cardService: CardService, private fb: FormBuilder,
+              private snackBar: MatSnackBar) { }
+
+  ngOnInit() {
+    const cardId = window.localStorage.getItem('cardId');
+    this.editCardForm = this.fb.group({
+      id: [''],
+      name: ['', Validators.required],
+      image: ['', Validators.required],
+      path: ['', Validators.required],
+      unitSymbol: ['', Validators.required],
+      value: ['', Validators.required],
+      lastUpdate: ['', Validators.required],
+      type: ['', Validators.required]
+    });
+    this.cardService.getCard(cardId)
+      .subscribe( data => {
+        this.editCardForm.setValue(data);
+      });
+  }
 
   onSubmit() {
     this.cardService.editCard(this.editCardForm.value)
       .subscribe(() => {
         this.snackBar.open('Card is updated!', '', {
-          duration: 2000,
+          duration: 1500,
         });
-      },
-        error => this.snackBar.open('Error: ' + error, '', {
-          duration: 2000,
+      }, error => this.snackBar.open('Error: ' + error, '', {
+          duration: 1500,
         })
       );
   }

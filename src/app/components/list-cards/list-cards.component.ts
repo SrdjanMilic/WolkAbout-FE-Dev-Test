@@ -12,18 +12,25 @@ import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.
 export class ListCardsComponent implements OnInit {
   // Search filter term variable
   term: string;
+  cards: any = [];
 
-  constructor(public cardService: CardService, public snackBar: MatSnackBar, public dialog: MatDialog) { }
+  constructor(public cardService: CardService, public snackBar: MatSnackBar,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    window.localStorage.removeItem('cardId');
     this.cardService.listCards()
       .subscribe((res: any[]) => {
-        this.cardService.data = res;
-        console.log(this.cardService.data);
+        this.cards = res;
+        console.log(this.cards);
       }, error => console.log(error));
   }
 
-  removeCard(id: number) {
+  editCard(id: number) {
+    window.localStorage.setItem('cardId', id.toString());
+  }
+
+  deleteCardDialog(id: number) {
     // call modal window
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '320px',
@@ -40,12 +47,14 @@ export class ListCardsComponent implements OnInit {
       if (dialogResult) {
         this.cardService.deleteCard(id)
           .subscribe((res: any[]) => {
-            this.cardService.data = this.cardService.data.filter((e: any) => e.id !== id);
+            this.cards = this.cards.filter((e: any) => e.id !== id);
             this.snackBar.open('Card is deleted!', '', {
-              duration: 2000,
+              duration: 1500,
             });
             console.log(res);
-          });
+          }, error => this.snackBar.open('Error: ' + error, '', {
+            duration: 1500,
+          }));
       }
       console.log(dialogResult);
     });

@@ -7,15 +7,15 @@
 </mat-form-field>
 
 <div class="container" fxLayout="row wrap" fxLayoutGap="1%">
-  <mat-card class="card" *ngFor="let card of cardService.data | filter:term">
+  <mat-card class="card" *ngFor="let card of cards | filter:term">
     <mat-card-title>
       <div class="action-icons">
-        <a routerLink="/edit-card">
+        <a (click)="this.editCard(card.id)" routerLink="/edit-card">
           <span class="material-icons">
             update
           </span>
         </a>
-        <span class="material-icons" (click)="this.removeCard(card.id)">
+        <span class="material-icons" (click)="this.deleteCardDialog(card.id)">
           delete
         </span>
       </div>
