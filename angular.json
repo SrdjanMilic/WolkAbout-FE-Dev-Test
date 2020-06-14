@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "WalkAbout-FE-Dev-Test": {
+    "WolkAbout-FE-Dev-Test": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/WalkAbout-FE-Dev-Test",
+            "outputPath": "dist/WolkAbout-FE-Dev-Test",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "WalkAbout-FE-Dev-Test:build"
+            "browserTarget": "WolkAbout-FE-Dev-Test:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "WalkAbout-FE-Dev-Test:build:production"
+              "browserTarget": "WolkAbout-FE-Dev-Test:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "WalkAbout-FE-Dev-Test:build"
+            "browserTarget": "WolkAbout-FE-Dev-Test:build"
           }
         },
         "test": {
@@ -116,16 +116,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "WalkAbout-FE-Dev-Test:serve"
+            "devServerTarget": "WolkAbout-FE-Dev-Test:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "WalkAbout-FE-Dev-Test:serve:production"
+              "devServerTarget": "WolkAbout-FE-Dev-Test:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "WalkAbout-FE-Dev-Test"
+  "defaultProject": "WolkAbout-FE-Dev-Test"
 }
