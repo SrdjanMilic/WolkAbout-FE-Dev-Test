@@ -69,6 +69,16 @@
       "value": true,
       "lastUpdate": 1507211004000,
       "type": "ALARM"
+    },
+    {
+      "id": 9,
+      "name": "Heart",
+      "image": "images/heart.svg",
+      "path": "Demo Device/Heart",
+      "unitSymbol": "C",
+      "value": "32",
+      "lastUpdate": 1592128513374,
+      "type": "ALARM"
     }
   ]
 }
