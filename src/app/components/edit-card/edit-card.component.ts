@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CardService } from '../../services/card.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-card',
   templateUrl: './edit-card.component.html',
   styleUrls: ['./edit-card.component.sass']
 })
-export class EditCardComponent implements OnInit {
+export class EditCardComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription[] = [];
 
   editCardForm: FormGroup;
 
@@ -27,14 +29,15 @@ export class EditCardComponent implements OnInit {
       lastUpdate: ['', Validators.required],
       type: ['', Validators.required]
     });
-    this.cardService.getCard(cardId)
+    this.subscriptions.push(this.cardService.getCard(cardId)
       .subscribe( data => {
         this.editCardForm.setValue(data);
-      });
+      }));
+    console.log('SUBSCRIPTION ' + this.subscriptions);
   }
 
   onSubmit() {
-    this.cardService.editCard(this.editCardForm.value)
+    this.subscriptions.push(this.cardService.editCard(this.editCardForm.value)
       .subscribe(() => {
         this.snackBar.open('Card is updated!', '', {
           duration: 1500,
@@ -42,6 +45,11 @@ export class EditCardComponent implements OnInit {
       }, error => this.snackBar.open('Error: ' + error, '', {
           duration: 1500,
         })
-      );
+      ));
+    console.log('SUBSCRIPTION ' + this.subscriptions);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }
