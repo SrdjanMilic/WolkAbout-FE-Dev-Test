@@ -9,8 +9,7 @@ import { Observable } from 'rxjs';
 export class CardService {
   API_SERVER = 'http://localhost:3000/sensors';
 
-  // Cards array
-  data: any = [];
+  date = new Date();
 
   constructor(public http: HttpClient) { }
 
@@ -19,13 +18,17 @@ export class CardService {
   }
 
   addCard(card: Card): Observable<object> {
-    card.lastUpdate = new Date();
+    card.lastUpdate = this.date.getTime();
     return this.http.post(this.API_SERVER, card);
   }
 
   editCard(card: Card): Observable<object> {
-    card.lastUpdate = new Date();
+    card.lastUpdate = this.date.getTime();
     return this.http.put(`${this.API_SERVER}/${card.id}`, card);
+  }
+
+  getCard(id: string): Observable<any> {
+    return this.http.get(`${this.API_SERVER}/${id}`);
   }
 
   deleteCard(id: number): Observable<any> {
