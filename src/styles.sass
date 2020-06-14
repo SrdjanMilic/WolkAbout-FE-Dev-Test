@@ -11,16 +11,21 @@
   width: 220px
 
 .search-form
-  margin: 1% 0 0 1%
+  margin: 16px 0 0 16px
 
 .container
   margin: 0 1% 1% 1%
+  @media screen and (max-width: 1070px)
+    justify-content: center
 
   .card
     width: 480px
     max-width: 480px
     height: 240px
     margin-bottom: 1%
+
+    &:last-of-type
+      margin-right: 1%
 
     a
       color: inherit
@@ -35,25 +40,24 @@
 
     .action-icons
       float: right
+      margin-top: 5px
       .material-icons
         font-size: 23px
 
     .small
-      color: #bcbcbc
+      color: #bdbdbd
       font-size: 70%
       margin: 0
 
     .svg
       width: 50px
       height: 70px
-      // filter: invert(.5) sepia(1) saturate(255) hue-rotate(172deg) brightness(125%)
       position: absolute
-      bottom: 13px
+      bottom: 18px
       left: 12px
 
     p
       color: #009b88
-      max-width: 120px
 
     .value, .symbol
       position: absolute
@@ -64,6 +68,7 @@
       font-size: 30px
       line-height: 30px
       text-align: right
+      max-width: 120px
 
     .symbol
       bottom: 0
@@ -75,10 +80,10 @@
   .mat-form-field
     width: 520px
     @media screen and (max-width: 600px)
-      width: 280px
+      width: 320px
 
 .btn-dialog, .btn-submit
   float: right
 
 .btn-back
-  margin: 0.5% 0 0 0.5% !important
+  margin: 10px 0 0 10px !important
