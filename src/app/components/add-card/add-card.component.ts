@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CardService } from '../../services/card.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,8 +12,7 @@ export class AddCardComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   createCardForm: FormGroup;
 
-  constructor(public cardsService: CardService, private fb: FormBuilder,
-              private snackBar: MatSnackBar) { }
+  constructor(public cardsService: CardService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.createCardForm = this.fb.group({
@@ -29,16 +27,8 @@ export class AddCardComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.subscription = this.cardsService.addCard(this.createCardForm.value)
-      .subscribe(() => {
-        this.snackBar.open('Card is created!', '', {
-          duration: 1500,
-        });
-      }, error => this.snackBar.open('Error: ' + error, '', {
-          duration: 1500,
-        })
-      );
-    console.log('ADD SUBSCRIPTION ' + this.subscription);
+    this.subscription = this.cardsService.addCard(this.createCardForm.value);
+    console.log('ADD_SUBSCRIPTION ' + this.subscription);
   }
 
   ngOnDestroy() {

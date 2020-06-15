@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CardService } from '../../services/card.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,11 +10,9 @@ import { Subscription } from 'rxjs';
 })
 export class EditCardComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-
   editCardForm: FormGroup;
 
-  constructor(public cardService: CardService, private fb: FormBuilder,
-              private snackBar: MatSnackBar) { }
+  constructor(public cardService: CardService, private fb: FormBuilder) { }
 
   ngOnInit() {
     const cardId = window.localStorage.getItem('cardId');
@@ -30,22 +27,14 @@ export class EditCardComponent implements OnInit, OnDestroy {
       type: ['', Validators.required]
     });
     this.subscriptions.push(this.cardService.getCard(cardId)
-      .subscribe( data => {
-        this.editCardForm.setValue(data);
+      .subscribe( formData => {
+        this.editCardForm.setValue(formData);
       }));
     console.log('SUBSCRIPTION ' + this.subscriptions);
   }
 
   onSubmit() {
-    this.subscriptions.push(this.cardService.editCard(this.editCardForm.value)
-      .subscribe(() => {
-        this.snackBar.open('Card is updated!', '', {
-          duration: 1500,
-        });
-      }, error => this.snackBar.open('Error: ' + error, '', {
-          duration: 1500,
-        })
-      ));
+    this.subscriptions.push(this.cardService.editCard(this.editCardForm.value));
     console.log('SUBSCRIPTION ' + this.subscriptions);
   }
 

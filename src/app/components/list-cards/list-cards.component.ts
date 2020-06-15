@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CardService } from '../../services/card.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { Subscription } from 'rxjs';
@@ -14,20 +13,14 @@ export class ListCardsComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   // Search filter term variable
   term: string;
-  cards: any = [];
   checked = false;
 
-  constructor(public cardService: CardService, public snackBar: MatSnackBar,
-              private dialog: MatDialog) { }
+  constructor(public cardService: CardService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     window.localStorage.removeItem('cardId');
-    this.subscriptions.push(this.cardService.listCards()
-    .subscribe((res: any[]) => {
-      this.cards = res;
-      console.log(this.cards);
-    }, error => console.log(error)));
-    console.log('SUBSCRIPTION ' + this.subscriptions);
+    this.subscriptions.push(this.cardService.listCards());
+    console.log('LIST_SUBSCRIPTION ' + this.subscriptions);
   }
 
   editCard(id: number) {
@@ -45,24 +38,16 @@ export class ListCardsComponent implements OnInit, OnDestroy {
     });
 
     // listen to response
-    dialogRef.afterClosed().subscribe(dialogResult => {
+    this.subscriptions.push(dialogRef.afterClosed().subscribe(dialogResult => {
       // if user pressed yes dialogResult will be true
       // if he pressed no, it will be false
       if (dialogResult) {
-        this.subscriptions.push(this.cardService.deleteCard(id)
-          .subscribe((res: any[]) => {
-            this.cards = this.cards.filter((e: any) => e.id !== id);
-            this.snackBar.open('Card is deleted!', '', {
-              duration: 1500,
-            });
-            console.log(res);
-          }, error => this.snackBar.open('Error: ' + error, '', {
-            duration: 1500,
-          })));
+        this.subscriptions.push(this.cardService.deleteCard(id));
+        this.cardService.cards = this.cardService.cards.filter((e: any) => e.id !== id);
       }
       console.log(dialogResult);
-      console.log('DIALOG SUBSCRIPTION ' + this.subscriptions);
-    });
+      console.log('DIALOG_SUBSCRIPTION ' + this.subscriptions);
+    }));
   }
 
   ngOnDestroy() {
