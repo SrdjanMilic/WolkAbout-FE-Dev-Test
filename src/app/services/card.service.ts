@@ -63,6 +63,7 @@ export class CardService {
   deleteCard(id: number) {
     return this.http.delete(`${this.API_SERVER}/${id}`)
       .subscribe((res: any[]) => {
+        this.cards = this.cards.filter((e: any) => e.id !== id);
         this.snackBar.open('Card is deleted.', '', {
           duration: 1500,
         });
