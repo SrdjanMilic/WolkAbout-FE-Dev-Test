@@ -2,27 +2,34 @@
   a
     text-decoration: none
     color: white
-    line-height: 23px
-
-  .material-icons
-    font-size: 36px
-
-.mat-form-field
-  width: 220px
 
 .search-form
   margin: 16px 0 0 16px
+  .mat-form-field
+    width: 220px
 
-.container
-  margin: 0 1% 1% 1%
+.btn-toggle-view
+  margin-right: 16px !important
+  .material-icons
+    font-size: 36px
+
+.add-card
+  margin-right: 16px
+
+// card view styles
+.card-view-container
+  margin: 0 16px 0
   @media screen and (max-width: 1070px)
     justify-content: center
 
-  .card
+  .card-view
     width: 480px
     max-width: 480px
     height: 240px
     margin-bottom: 1%
+
+    .mat-card-header-text
+      margin: 0 12px !important
 
     &:last-of-type
       margin-right: 1%
@@ -39,8 +46,7 @@
       color: inherit
 
     .action-icons
-      float: right
-      margin-top: 5px
+      margin: 5px 8px 0 0
       .material-icons
         font-size: 23px
 
@@ -50,11 +56,11 @@
       margin: 0
 
     .svg
-      width: 50px
-      height: 70px
+      width: auto
+      height: 50px
       position: absolute
       bottom: 18px
-      left: 12px
+      left: 14px
 
     p
       color: #009b88
@@ -71,19 +77,83 @@
       max-width: 120px
 
     .symbol
-      bottom: 0
-      font-size: 85%
+      bottom: 18px
+      font-size: 100%
 
+// grid view styles
+.grid-view-container
+  width: 1000px
+  margin-bottom: 1%
+
+  .grid-view
+    .mat-card-title, p
+      padding-right: 12px
+      border-right: 1px solid #e4e4e4
+      line-height: 40px
+      width: 20%
+
+    .mat-card-title
+      margin: 0 4px 0 0
+      h3
+        line-height: 40px
+
+    a
+      color: inherit
+      margin-right: 5px
+
+    span:last-child
+      cursor: pointer
+    
+    h3
+      margin: 0 !important
+      color: inherit
+
+    .action-icons
+      width: 15%
+      .material-icons
+        font-size: 19px
+
+    .small
+      color: #bdbdbd
+      margin: 0
+      width: 35%
+
+    .value
+      width: 30%
+
+    .svg
+      width: auto
+      height: 40px
+
+    p
+      color: #009b88
+      margin: 0
+      padding-left: 15px
+
+// new/edit card form
 .form-container
-  margin-top: 3%
+  margin: 3% 16px 16px
 
-  .mat-form-field
+  .mat-card
     width: 520px
-    @media screen and (max-width: 600px)
-      width: 320px
+    @media screen and (max-width: 520px)
+      width: 100%
 
+// mat-dialog buttons
 .btn-dialog, .btn-submit
   float: right
 
 .btn-back
   margin: 10px 0 0 10px !important
+
+@media screen and (max-width: 1000px)
+  .grid-view-container
+    width: 100%
+    margin: 0 16px 16px
+    .grid-view
+      .mat-card-title
+        margin: 0 0 0 4px
+      .h3, p
+        line-height: 20px
+    .svg
+      height: 25px

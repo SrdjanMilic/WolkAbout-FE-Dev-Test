@@ -1,14 +1,41 @@
-<mat-form-field class="search-form">
-  <mat-label>Search Here</mat-label>
-  <input matInput type="text" [(ngModel)]="term">
-  <button class="btn-clear" mat-button *ngIf="term" matSuffix mat-icon-button aria-label="Clear" (click)="term=''">
-    <mat-icon>close</mat-icon>
-  </button>
-</mat-form-field>
+<div fxLayoutAlign="space-between center">
+  <mat-form-field class="search-form">
+    <mat-label>Search Here</mat-label>
+    <input matInput type="text" [(ngModel)]="term">
+    <button class="btn-clear" mat-button *ngIf="term" matSuffix mat-icon-button aria-label="Clear" (click)="term=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
 
-<div class="container" fxLayout="row wrap" fxLayoutGap="1%">
-  <mat-card class="card" *ngFor="let card of cards | filter:term">
-    <mat-card-title>
+  <div>
+    <button mat-stroked-button class="btn-toggle-view" (click)="this.toggleView()" aria-label="Change View">
+      <span class="material-icons" *ngIf="!viewState">
+        view_module
+      </span>
+      <span class="material-icons" *ngIf="viewState">
+        view_list
+      </span>
+    </button>
+
+    <a class="add-card" routerLink="/add-card">
+      <button mat-mini-fab color="accent" aria-label="Add new card">
+        <span class="material-icons">
+          add
+        </span>
+      </button>
+    </a>
+  </div>
+</div>
+
+
+<div class="card-view-container" fxLayout="row wrap" fxLayoutGap="1%" *ngIf="!viewState">
+  <mat-card class="card-view" *ngFor="let card of this.cardService.cards | filter:term">
+    <mat-card-header fxLayoutAlign="space-between">
+      <mat-card-title>
+        <h2>{{ card.name }}</h2>
+        <p class="small">{{ card.path }}</p>
+        <p class="small">@{{ card.lastUpdate | date:"HH:mm"}}</p>
+      </mat-card-title>
       <div class="action-icons">
         <a (click)="this.editCard(card.id)" routerLink="/edit-card">
           <span class="material-icons">
@@ -19,12 +46,33 @@
           delete
         </span>
       </div>
-      <h2>{{ card.name }}</h2>
-      <p class="small">{{ card.path }}</p>
-      <p class="small">@{{ card.lastUpdate | date:"HH:mm"}}</p>
-      <img class="svg" src="../../../assets/{{ card.image }}">
-      <p class="value">{{ card.value }}</p>
-      <p class="symbol">{{ card.unitSymbol }}</p>
-    </mat-card-title>
+    </mat-card-header>
+    <img class="svg" src="../../../assets/{{ card.image }}">
+    <p class="value">{{ card.value }}</p>
+    <p class="symbol">{{ card.unitSymbol }}</p>
   </mat-card>
+</div>
+
+<div fxLayoutAlign="center">
+  <div class="grid-view-container" fxLayout="column" fxLayoutGap="1%" *ngIf="viewState">
+    <mat-card class="grid-view" fxLayout="row" fxLayoutAlign="start center"
+      *ngFor="let card of this.cardService.cards | filter:term">
+      <img class="svg" src="../../../assets/{{ card.image }}">
+      <mat-card-title>
+        <h3>{{ card.name }}</h3>
+      </mat-card-title>
+      <p class="small">{{ card.path }} @{{ card.lastUpdate | date:"HH:mm"}}</p>
+      <p class="value">{{ card.value }} {{ card.unitSymbol }}</p>
+      <div class="action-icons" fxLayout="row" fxLayoutAlign="center">
+        <a (click)="this.editCard(card.id)" routerLink="/edit-card">
+          <span class="material-icons">
+            update
+          </span>
+        </a>
+        <span class="material-icons" (click)="this.deleteCardDialog(card.id)">
+          delete
+        </span>
+      </div>
+    </mat-card>
+  </div>
 </div>

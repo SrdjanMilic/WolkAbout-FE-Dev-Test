@@ -13,14 +13,21 @@ export class ListCardsComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   // Search filter term variable
   term: string;
-  checked = false;
+  // Change view
+  viewState = false;
 
   constructor(public cardService: CardService, private dialog: MatDialog) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    const viewState = window.localStorage.getItem('View');
+    const boolValue = (viewState === 'true');
+    this.viewState = boolValue;
+    // render initial data from the array
+    this.cardService.newCards = this.cardService.cards;
     window.localStorage.removeItem('cardId');
     this.subscriptions.push(this.cardService.listCards());
     console.log('LIST_SUBSCRIPTION ' + this.subscriptions);
+    console.log(this.viewState);
   }
 
   editCard(id: number) {
@@ -43,11 +50,16 @@ export class ListCardsComponent implements OnInit, OnDestroy {
       // if he pressed no, it will be false
       if (dialogResult) {
         this.subscriptions.push(this.cardService.deleteCard(id));
-        this.cardService.cards = this.cardService.cards.filter((e: any) => e.id !== id);
       }
       console.log(dialogResult);
       console.log('DIALOG_SUBSCRIPTION ' + this.subscriptions);
     }));
+  }
+
+  toggleView() {
+    this.viewState = !this.viewState;
+    window.localStorage.setItem('View', this.viewState.toString());
+    console.log(this.viewState);
   }
 
   ngOnDestroy() {
