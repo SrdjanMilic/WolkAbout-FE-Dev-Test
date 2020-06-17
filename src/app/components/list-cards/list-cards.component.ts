@@ -22,8 +22,6 @@ export class ListCardsComponent implements OnInit, OnDestroy {
     const viewState = window.localStorage.getItem('View');
     const boolValue = (viewState === 'true');
     this.viewState = boolValue;
-    // render initial data from the array
-    this.cardService.newCards = this.cardService.cards;
     window.localStorage.removeItem('cardId');
     this.subscriptions.push(this.cardService.listCards());
     console.log('LIST_SUBSCRIPTION ' + this.subscriptions);
