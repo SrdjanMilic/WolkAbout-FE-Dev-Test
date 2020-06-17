@@ -7,16 +7,14 @@
     </button>
   </mat-form-field>
 
-  <div>
-    <button mat-stroked-button class="btn-toggle-view" (click)="this.toggleView()" aria-label="Change View">
-      <span class="material-icons" *ngIf="!viewState">
-        view_module
-      </span>
-      <span class="material-icons" *ngIf="viewState">
-        view_list
-      </span>
-    </button>
-
+  <div class="btn-toggle-view" fxLayout="row">
+    <span class="material-icons toggle-icon" *ngIf="!viewState" (click)="this.toggleView()" aria-label="Change View">
+      view_module
+    </span>
+    <span class="material-icons toggle-icon" *ngIf="viewState" (click)="this.toggleView()" aria-label="Change View">
+      view_list
+    </span>
+    
     <a class="add-card" routerLink="/add-card">
       <button mat-mini-fab color="accent" aria-label="Add new card">
         <span class="material-icons">
