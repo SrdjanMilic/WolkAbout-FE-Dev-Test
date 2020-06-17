@@ -27,12 +27,12 @@ export class CardService {
     card.lastUpdate = this.date.getTime();
     return this.http.post(this.API_SERVER, card)
       .subscribe(() => {
-        this.snackBar.open('Card is created.', '', {
+        this.snackBar.open('Card is created', '', {
           duration: 1500,
         });
-        console.log('Submitted to database.');
+        console.log('Submitted to database');
       }, error => {
-        this.snackBar.open('Error has occur: ' + error, '', {
+        this.snackBar.open('Error has occur', '', {
           duration: 1500,
         });
         console.log(error);
@@ -43,12 +43,12 @@ export class CardService {
     card.lastUpdate = this.date.getTime();
     return this.http.put(`${this.API_SERVER}/${card.id}`, card)
     .subscribe(() => {
-      this.snackBar.open('Card is updated.', '', {
+      this.snackBar.open('Card is updated', '', {
         duration: 1500,
       });
-      console.log('Card is updated.');
+      console.log('Card is updated');
     }, error => {
-      this.snackBar.open('Error has occur.', '', {
+      this.snackBar.open('Error has occur', '', {
         duration: 1500,
       });
       console.log(error);
@@ -63,13 +63,13 @@ export class CardService {
   deleteCard(id: number) {
     return this.http.delete(`${this.API_SERVER}/${id}`)
       .subscribe((res: any[]) => {
-        this.cards = this.cards.filter((e: any) => e.id !== id);
-        this.snackBar.open('Card is deleted.', '', {
+        this.cards = [...this.cards].filter((e: any) => e.id !== id);
+        this.snackBar.open('Card is deleted', '', {
           duration: 1500,
         });
         console.log(res);
       }, error => {
-        this.snackBar.open('Error has occur.', '', {
+        this.snackBar.open('Error has occur', '', {
           duration: 1500,
         }), console.log(error);
       });
