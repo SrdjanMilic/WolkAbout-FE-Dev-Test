@@ -3,6 +3,7 @@ import { CardService } from '../../services/card.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-cards',
@@ -16,7 +17,8 @@ export class ListCardsComponent implements OnInit, OnDestroy {
   // Change view
   viewState = false;
 
-  constructor(public cardService: CardService, private dialog: MatDialog) { }
+  constructor(public cardService: CardService, private dialog: MatDialog,
+              private router: Router) { }
 
   ngOnInit() {
     const viewState = window.localStorage.getItem('View');
@@ -29,7 +31,7 @@ export class ListCardsComponent implements OnInit, OnDestroy {
   }
 
   editCard(id: number) {
-    window.localStorage.setItem('cardId', id.toString());
+    this.router.navigate(['/edit-card', id]);
   }
 
   deleteCardDialog(id: number) {

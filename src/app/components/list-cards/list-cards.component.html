@@ -8,10 +8,10 @@
   </mat-form-field>
 
   <div class="btn-toggle-view" fxLayout="row">
-    <span class="material-icons toggle-icon" *ngIf="!viewState" (click)="this.toggleView()" aria-label="Change View">
+    <span class="material-icons toggle-icon" *ngIf="!viewState" (click)="toggleView()" aria-label="Change View">
       view_module
     </span>
-    <span class="material-icons toggle-icon" *ngIf="viewState" (click)="this.toggleView()" aria-label="Change View">
+    <span class="material-icons toggle-icon" *ngIf="viewState" (click)="toggleView()" aria-label="Change View">
       view_list
     </span>
     
@@ -27,7 +27,7 @@
 
 
 <div class="card-view-container" fxLayout="row wrap" fxLayoutGap="1%" *ngIf="!viewState">
-  <mat-card class="card-view" *ngFor="let card of this.cardService.cards | filter:term">
+  <mat-card class="card-view" *ngFor="let card of cardService.cards | filter:term">
     <mat-card-header fxLayoutAlign="space-between">
       <mat-card-title>
         <h2>{{ card.name }}</h2>
@@ -35,12 +35,12 @@
         <p class="small">@{{ card.lastUpdate | date:"HH:mm"}}</p>
       </mat-card-title>
       <div class="action-icons">
-        <a (click)="this.editCard(card.id)" routerLink="/edit-card">
+        <a (click)="editCard(card.id)" [routerLink]="['/edit-card', card.id]">
           <span class="material-icons">
             update
           </span>
         </a>
-        <span class="material-icons" (click)="this.deleteCardDialog(card.id)">
+        <span class="material-icons" (click)="deleteCardDialog(card.id)">
           delete
         </span>
       </div>
@@ -54,7 +54,7 @@
 <div fxLayoutAlign="center">
   <div class="grid-view-container" fxLayout="column" fxLayoutGap="1%" *ngIf="viewState">
     <mat-card class="grid-view" fxLayout="row" fxLayoutAlign="start center"
-      *ngFor="let card of this.cardService.cards | filter:term">
+      *ngFor="let card of cardService.cards | filter:term">
       <img class="svg" src="../../../assets/{{ card.image }}">
       <mat-card-title>
         <h3>{{ card.name }}</h3>
@@ -62,12 +62,12 @@
       <p class="small">{{ card.path }} @{{ card.lastUpdate | date:"HH:mm"}}</p>
       <p class="value">{{ card.value }} {{ card.unitSymbol }}</p>
       <div class="action-icons" fxLayout="row" fxLayoutAlign="center">
-        <a (click)="this.editCard(card.id)" routerLink="/edit-card">
+        <a (click)="editCard(card.id)" routerLink="/edit-card">
           <span class="material-icons">
             update
           </span>
         </a>
-        <span class="material-icons" (click)="this.deleteCardDialog(card.id)">
+        <span class="material-icons" (click)="deleteCardDialog(card.id)">
           delete
         </span>
       </div>

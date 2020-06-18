@@ -39,9 +39,9 @@ export class CardService {
       });
   }
 
-  editCard(card: Card) {
+  editCard(id: number, card: Card) {
     card.lastUpdate = this.date.getTime();
-    return this.http.put(`${this.API_SERVER}/${card.id}`, card)
+    return this.http.put(`${this.API_SERVER}/${id}`, card)
     .subscribe(() => {
       this.snackBar.open('Card is updated', '', {
         duration: 1500,
@@ -55,8 +55,7 @@ export class CardService {
     });
   }
 
-  getCard(id: string): Observable<object> {
-    console.log(id);
+  getCard(id: number): Observable<any> {
     return this.http.get(`${this.API_SERVER}/${id}`);
   }
 
