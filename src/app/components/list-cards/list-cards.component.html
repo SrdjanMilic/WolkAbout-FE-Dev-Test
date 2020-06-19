@@ -8,12 +8,14 @@
   </mat-form-field>
 
   <div class="btn-toggle-view" fxLayout="row">
-    <span class="material-icons toggle-icon" *ngIf="!viewState" (click)="toggleView()" aria-label="Change View">
-      view_module
-    </span>
-    <span class="material-icons toggle-icon" *ngIf="viewState" (click)="toggleView()" aria-label="Change View">
-      view_list
-    </span>
+    <div (click)="toggleView()">
+      <span class="material-icons toggle-icon" *ngIf="!viewState" aria-label="Change View">
+        view_module
+      </span>
+      <span class="material-icons toggle-icon" *ngIf="viewState" aria-label="Change View">
+        view_list
+      </span>
+    </div>
     
     <a class="add-card" routerLink="/add-card">
       <button mat-mini-fab color="accent" aria-label="Add new card">
@@ -25,9 +27,8 @@
   </div>
 </div>
 
-
 <div class="card-view-container" fxLayout="row wrap" fxLayoutGap="1%" *ngIf="!viewState">
-  <mat-card class="card-view" *ngFor="let card of cardService.cards | filter:term">
+  <mat-card class="card-view" *ngFor="let card of cards$ | filter:term">
     <mat-card-header fxLayoutAlign="space-between">
       <mat-card-title>
         <h2>{{ card.name }}</h2>
@@ -52,9 +53,9 @@
 </div>
 
 <div fxLayoutAlign="center">
-  <div class="grid-view-container" fxLayout="column" fxLayoutGap="1%" *ngIf="viewState">
+  <div class="grid-view-container" fxLayout="column" fxLayoutGap="1%" *ngIf="viewState && cards$">
     <mat-card class="grid-view" fxLayout="row" fxLayoutAlign="start center"
-      *ngFor="let card of cardService.cards | filter:term">
+      *ngFor="let card of cards$ | filter:term">
       <img class="svg" src="../../../assets/{{ card.image }}">
       <mat-card-title>
         <h3>{{ card.name }}</h3>

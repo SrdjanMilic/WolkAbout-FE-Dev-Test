@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CardService } from '../../services/card.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Card } from 'src/app/models/card.model';
 
 @Component({
   selector: 'app-list-cards',
@@ -11,21 +12,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-cards.component.sass']
 })
 export class ListCardsComponent implements OnInit, OnDestroy {
-  private subscriptions: Subscription[] = [];
+
   // Search filter term variable
   term: string;
-  // Change view
+
+  // Change view state
   viewState = false;
+
+  cards$: Array<object>;
+  cardsList$: Observable<object> = this.cardService.cardsSource$.asObservable();
+
+  // Variable to store all subscriptions
+  private subscriptions: Subscription[] = [];
 
   constructor(public cardService: CardService, private dialog: MatDialog,
               private router: Router) { }
 
   ngOnInit() {
+    this.cardService.getCardList();
+    this.subscriptions.push(this.cardsList$.subscribe((res: Array<object>) => {
+      this.cards$ = res;
+      console.log('CARDS ', res);
+    }));
     const viewState = window.localStorage.getItem('View');
+    // Convert boolean to string
     const boolValue = (viewState === 'true');
     this.viewState = boolValue;
-    window.localStorage.removeItem('cardId');
-    this.subscriptions.push(this.cardService.listCards());
     console.log('LIST_SUBSCRIPTION ' + this.subscriptions);
     console.log(this.viewState);
   }
@@ -49,6 +61,7 @@ export class ListCardsComponent implements OnInit, OnDestroy {
       // if user pressed yes dialogResult will be true
       // if he pressed no, it will be false
       if (dialogResult) {
+        this.cards$ = [...this.cards$].filter((e: Card) => e.id !== id);
         this.subscriptions.push(this.cardService.deleteCard(id));
       }
       console.log(dialogResult);

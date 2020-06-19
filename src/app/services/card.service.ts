@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Card } from '../models/card.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +10,22 @@ import { Observable } from 'rxjs';
 export class CardService {
   API_SERVER = 'http://localhost:3000/sensors';
 
-  cards: any[];
   date = new Date();
+
+  public cardsSource$: BehaviorSubject<Array<object>> = new BehaviorSubject<Array<object>>([]);
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 
-  listCards() {
+  getCardList() {
     return this.http.get(this.API_SERVER)
-      .subscribe((res: any[]) => {
-        this.cards = res;
-        console.log(this.cards);
-      }, error => console.log(error));
+      .subscribe((res: Array<object>) => {
+        this.cardsSource$.next(res);
+      }, error => {
+        this.snackBar.open('Error has occur', '', {
+          duration: 1500,
+        });
+        console.log(error);
+      });
   }
 
   addCard(card: Card) {
@@ -42,17 +47,17 @@ export class CardService {
   editCard(id: number, card: Card) {
     card.lastUpdate = this.date.getTime();
     return this.http.put(`${this.API_SERVER}/${id}`, card)
-    .subscribe(() => {
-      this.snackBar.open('Card is updated', '', {
-        duration: 1500,
+      .subscribe(() => {
+        this.snackBar.open('Card is updated', '', {
+          duration: 1500,
+        });
+        console.log('Card is updated');
+      }, error => {
+        this.snackBar.open('Error has occur', '', {
+          duration: 1500,
+        });
+        console.log(error);
       });
-      console.log('Card is updated');
-    }, error => {
-      this.snackBar.open('Error has occur', '', {
-        duration: 1500,
-      });
-      console.log(error);
-    });
   }
 
   getCard(id: number): Observable<any> {
@@ -61,8 +66,7 @@ export class CardService {
 
   deleteCard(id: number) {
     return this.http.delete(`${this.API_SERVER}/${id}`)
-      .subscribe((res: any[]) => {
-        this.cards = [...this.cards].filter((e: any) => e.id !== id);
+      .subscribe((res: any) => {
         this.snackBar.open('Card is deleted', '', {
           duration: 1500,
         });
