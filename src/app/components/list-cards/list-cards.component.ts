@@ -5,6 +5,7 @@ import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-list-cards',
@@ -21,18 +22,18 @@ export class ListCardsComponent implements OnInit, OnDestroy {
 
   cards$: Array<object>;
 
-  // cardsList$: Observable<object> = this.cardService.cardsSource$.asObservable();
-
   // Variable to store all subscriptions
   private subscriptions: Subscription[] = [];
 
   constructor(public cardService: CardService, private dialog: MatDialog,
-              private router: Router) { }
+              private router: Router, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.cardService.getCardList();
     this.subscriptions.push(this.cardService.cardsSource$.subscribe((res: Array<object>) => {
       this.cards$ = res;
+      this.spinner.hide();
       console.log('CARDS ', this.cards$);
     }));
     const viewState = window.localStorage.getItem('View');
