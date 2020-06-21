@@ -1,4 +1,4 @@
-<div fxLayoutAlign="space-between center">
+<div class="bellow-toolbar-container" fxLayoutAlign="space-between center">
   <mat-form-field class="search-form">
     <mat-label>Search Here</mat-label>
     <input matInput type="text" [(ngModel)]="term">
@@ -16,7 +16,7 @@
         view_list
       </span>
     </div>
-    
+
     <a class="add-card" routerLink="/add-card">
       <button mat-mini-fab color="accent" aria-label="Add new card">
         <span class="material-icons">
@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<div class="card-view-container" fxLayout="row wrap" fxLayoutGap="1%" *ngIf="!viewState">
+<div class="card-view-container" fxLayout="row wrap" fxLayoutGap="1.5rem" *ngIf="!viewState">
   <mat-card class="card-view" *ngFor="let card of cards$ | filter:term">
     <mat-card-header fxLayoutAlign="space-between">
       <mat-card-title>
@@ -53,9 +53,8 @@
 </div>
 
 <div fxLayoutAlign="center">
-  <div class="grid-view-container" fxLayout="column" fxLayoutGap="1%" *ngIf="viewState && cards$">
-    <mat-card class="grid-view" fxLayout="row" fxLayoutAlign="start center"
-      *ngFor="let card of cards$ | filter:term">
+  <div class="grid-view-container" fxLayout="column" fxLayoutGap="1rem" *ngIf="viewState && cards$">
+    <mat-card class="grid-view" fxLayout="row" fxLayoutAlign="start center" *ngFor="let card of cards$ | filter:term">
       <img class="svg" src="../../../assets/{{ card.image }}">
       <mat-card-title>
         <h3>{{ card.name }}</h3>
