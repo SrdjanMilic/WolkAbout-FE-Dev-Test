@@ -12,7 +12,7 @@ export class AddCardComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   createCardForm: FormGroup;
 
-  constructor(public cardsService: CardService, private fb: FormBuilder) { }
+  constructor(public cardService: CardService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.createCardForm = this.fb.group({
@@ -22,12 +22,17 @@ export class AddCardComponent implements OnInit, OnDestroy {
       path: ['', Validators.required],
       unitSymbol: ['', Validators.required],
       value: ['', Validators.required],
+      lastUpdate: [''],
       type: ['', Validators.required]
     });
   }
 
   onSubmit() {
-    this.subscription = this.cardsService.addCard(this.createCardForm.value);
+    // Get create time
+    this.createCardForm.patchValue({
+      lastUpdate: Date.now()
+    });
+    this.subscription = this.cardService.addCard(this.createCardForm.value);
     console.log('ADD_SUBSCRIPTION ' + this.subscription);
   }
 

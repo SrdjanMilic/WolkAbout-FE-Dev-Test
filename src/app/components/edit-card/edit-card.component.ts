@@ -30,7 +30,7 @@ export class EditCardComponent implements OnInit, OnDestroy {
       path: ['', Validators.required],
       unitSymbol: ['', Validators.required],
       value: ['', Validators.required],
-      lastUpdate: ['', Validators.required],
+      lastUpdate: [''],
       type: ['', Validators.required]
     });
 
@@ -55,6 +55,10 @@ export class EditCardComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    // Get edit time
+    this.editCardForm.patchValue({
+      lastUpdate: Date.now()
+    });
     this.subscriptions.push(this.cardService.editCard(this.selectedId, this.editCardForm.value));
     console.log('SUBSCRIPTION ' + this.subscriptions);
   }

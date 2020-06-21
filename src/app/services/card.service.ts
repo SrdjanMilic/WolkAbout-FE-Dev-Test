@@ -10,8 +10,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class CardService {
   API_SERVER = 'http://localhost:3000/sensors';
 
-  date = new Date();
-
   public cardsSource$: BehaviorSubject<Array<object>> = new BehaviorSubject<Array<object>>([]);
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
@@ -29,13 +27,12 @@ export class CardService {
   }
 
   addCard(card: Card) {
-    card.lastUpdate = this.date.getTime();
     return this.http.post(this.API_SERVER, card)
       .subscribe(() => {
         this.snackBar.open('Card is created', '', {
           duration: 1500,
         });
-        console.log('Submitted to database');
+        console.log(card);
       }, error => {
         this.snackBar.open('Error has occur', '', {
           duration: 1500,
@@ -45,13 +42,12 @@ export class CardService {
   }
 
   editCard(id: number, card: Card) {
-    card.lastUpdate = this.date.getTime();
     return this.http.put(`${this.API_SERVER}/${id}`, card)
       .subscribe(() => {
         this.snackBar.open('Card is updated', '', {
           duration: 1500,
         });
-        console.log('Card is updated');
+        console.log(card);
       }, error => {
         this.snackBar.open('Error has occur', '', {
           duration: 1500,
