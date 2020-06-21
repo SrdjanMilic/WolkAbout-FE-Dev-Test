@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CardService } from '../../services/card.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
 
@@ -20,7 +20,8 @@ export class ListCardsComponent implements OnInit, OnDestroy {
   viewState = false;
 
   cards$: Array<object>;
-  cardsList$: Observable<object> = this.cardService.cardsSource$.asObservable();
+
+  // cardsList$: Observable<object> = this.cardService.cardsSource$.asObservable();
 
   // Variable to store all subscriptions
   private subscriptions: Subscription[] = [];
@@ -30,9 +31,9 @@ export class ListCardsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.cardService.getCardList();
-    this.subscriptions.push(this.cardsList$.subscribe((res: Array<object>) => {
+    this.subscriptions.push(this.cardService.cardsSource$.subscribe((res: Array<object>) => {
       this.cards$ = res;
-      console.log('CARDS ', res);
+      console.log('CARDS ', this.cards$);
     }));
     const viewState = window.localStorage.getItem('View');
     // Convert boolean to string
