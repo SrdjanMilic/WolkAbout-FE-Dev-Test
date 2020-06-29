@@ -6,4 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 `npm -i`  
 `json-server --watch data/db.json`  
-`npm start`
+`npm start`  
+
+## Task requirements
+
+Task requirements are in the 'documents/FE Dev Test.docx' file.
+
