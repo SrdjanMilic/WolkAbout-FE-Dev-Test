@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CardService {
-  API_SERVER = 'http://localhost:3000/sensors';
+  API_SERVER = 'http://localhost:3001/sensors';
 
   public cardsSource$: BehaviorSubject<Array<object>> = new BehaviorSubject<Array<object>>([]);
 
