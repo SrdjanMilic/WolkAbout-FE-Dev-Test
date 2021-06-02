@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { Card } from 'src/app/models/card.model';
+import { Card } from 'src/app/classes/card.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({

@@ -47,7 +47,7 @@
         </span>
       </div>
     </mat-card-header>
-    <img class="svg" src="../../../assets/{{ card.image }}">
+    <img class="svg" src="../../../assets/images/{{ card.image }}" alt="Card Image">
     <p class="value">{{ card.value }}</p>
     <p class="symbol">{{ card.unitSymbol }}</p>
   </mat-card>
@@ -56,7 +56,7 @@
 <div fxLayoutAlign="center">
   <div class="grid-view-container" fxLayout="column" fxLayoutGap="1rem" *ngIf="viewState && cards$">
     <mat-card class="grid-view" fxLayout="row" fxLayoutAlign="start center" *ngFor="let card of cards$ | filter:term">
-      <img class="svg" src="../../../assets/{{ card.image }}">
+      <img class="svg" src="../../../assets/images/{{ card.image }}" alt="Card Image">
       <mat-card-title>
         <h3>{{ card.name }}</h3>
       </mat-card-title>

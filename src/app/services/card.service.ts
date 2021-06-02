@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Card } from '../models/card.model';
+import { Card } from '../classes/card.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CardService {
-  API_SERVER = 'http://localhost:3001/sensors';
+  API_SERVER = 'http://localhost:3000/sensors';
 
   public cardsSource$: BehaviorSubject<Array<object>> = new BehaviorSubject<Array<object>>([]);
 
@@ -70,7 +70,8 @@ export class CardService {
       }, error => {
         this.snackBar.open('Error has occur', '', {
           duration: 1500,
-        }), console.log(error);
+        });
+        console.log(error);
       });
   }
 }

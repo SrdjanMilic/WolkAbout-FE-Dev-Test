@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CardService } from '../../services/card.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { Card } from '../../models/card.model';
+import { Card } from '../../classes/card.model';
 
 @Component({
   selector: 'app-edit-card',
