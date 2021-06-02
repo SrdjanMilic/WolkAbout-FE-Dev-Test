@@ -1,24 +1,27 @@
+body
+  margin: 0
+
 .toolbar
   a
     text-decoration: none
     color: #ffffff
-  
+
   .home-icon
-    font-size: 28px
+    font-size: 50px
 
   h1
     font-size: 25px
     margin-left: 4px
 
 .search-form
-  margin: 1rem 0 0 1.5rem
-  
+  margin: .5rem 0 0 1.5rem
+
   .mat-form-field
     width: 220px
 
 .btn-toggle-view
-  margin-right: 1.5rem !important
-  
+  margin: .5rem 1.5rem 0 0
+
   .toggle-icon
     font-size: 42px
     cursor: pointer
@@ -52,7 +55,7 @@
 
     span:last-child
       cursor: pointer
-    
+
     h2
       margin: 0 !important
       color: inherit
@@ -80,7 +83,7 @@
     .value, .symbol
       position: absolute
       right: 27px
-      
+
     .value
       bottom: 26px
       font-size: 30px
@@ -116,7 +119,7 @@
 
     span:last-child
       cursor: pointer
-    
+
     h3
       margin: 0 !important
       color: inherit
@@ -153,13 +156,14 @@
       width: 100%
 
 // mat-dialog buttons
-.btn-dialog, .btn-submit
+.btn-dialog,
+.btn-submit
   float: right
 
-.btn-back
-  margin: 10px 0 0 10px !important
+.btn-back.mat-mini-fab
+  margin: 10px 0 0 16px
 
-@media screen and (max-width: 1000px)
+@media (max-width: 1000px)
   .grid-view-container
     width: 100%
     margin: 0 1.5rem 1.5rem
