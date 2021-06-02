@@ -3,7 +3,7 @@
     {
       "id": 0,
       "name": "Temperature",
-      "image": "images/ico_temperature.svg",
+      "image": "ico_temperature.svg",
       "path": "DemoDevice/Temperature",
       "unitSymbol": "℃",
       "value": "31.8",
@@ -13,7 +13,7 @@
     {
       "id": 1,
       "name": "Humidity",
-      "image": "images/ico_humidity.svg",
+      "image": "ico_humidity.svg",
       "path": "DemoDevice/Humidity",
       "unitSymbol": "%",
       "value": "43.23",
@@ -23,7 +23,7 @@
     {
       "id": 2,
       "name": "Pressure",
-      "image": "images/ico_pressure.svg",
+      "image": "ico_pressure.svg",
       "path": "DemoDevice/Pressure",
       "unitSymbol": "mb",
       "value": "1003.4",
@@ -33,7 +33,7 @@
     {
       "id": 4,
       "name": "Light",
-      "image": "images/ico_switcher.svg",
+      "image": "ico_switcher.svg",
       "path": "DemoDevice/Light",
       "unitSymbol": null,
       "value": false,
@@ -43,7 +43,7 @@
     {
       "id": 5,
       "name": "Count",
-      "image": "images/ico_slider.svg",
+      "image": "ico_slider.svg",
       "path": "DemoDevice/Count",
       "unitSymbol": "count",
       "value": "+76",
@@ -53,7 +53,7 @@
     {
       "id": 6,
       "name": "Highway board",
-      "image": "images/ico_string.svg",
+      "image": "ico_string.svg",
       "path": "DemoDevice/Light",
       "unitSymbol": null,
       "value": "Drive carefully someone loves you",
@@ -63,7 +63,7 @@
     {
       "id": 7,
       "name": "High Humidity",
-      "image": "images/ico_alarm.svg",
+      "image": "ico_alarm.svg",
       "path": "DemoDevice/High Humidity",
       "unitSymbol": null,
       "value": true,
@@ -73,7 +73,7 @@
     {
       "id": 8,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -83,7 +83,7 @@
     {
       "id": 9,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -93,7 +93,7 @@
     {
       "id": 10,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -103,7 +103,7 @@
     {
       "id": 11,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -113,7 +113,7 @@
     {
       "id": 12,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -123,7 +123,7 @@
     {
       "id": 13,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -133,7 +133,7 @@
     {
       "id": 14,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -143,7 +143,7 @@
     {
       "id": 15,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -153,7 +153,7 @@
     {
       "id": 16,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -163,7 +163,7 @@
     {
       "id": 17,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -173,7 +173,7 @@
     {
       "id": 18,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -183,7 +183,7 @@
     {
       "id": 19,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -193,7 +193,7 @@
     {
       "id": 20,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -203,7 +203,7 @@
     {
       "id": 21,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -211,19 +211,9 @@
       "type": "ALARM"
     },
     {
-      "id": 22,
-      "name": "Test card",
-      "image": "images/heart.svg",
-      "path": "Demo Device/Heart",
-      "unitSymbol": "C",
-      "value": "32",
-      "lastUpdate": 1592723104231,
-      "type": "ALARM"
-    },
-    {
       "id": 23,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
@@ -233,21 +223,11 @@
     {
       "id": 24,
       "name": "Test card",
-      "image": "images/heart.svg",
+      "image": "heart.svg",
       "path": "Demo Device/Heart",
       "unitSymbol": "C",
       "value": "32",
       "lastUpdate": 1592723838645,
-      "type": "ALARM"
-    },
-    {
-      "id": 25,
-      "name": "Test card",
-      "image": "images/heart.svg",
-      "path": "Demo Device/Heart",
-      "unitSymbol": "C",
-      "value": "32",
-      "lastUpdate": 1592723839808,
       "type": "ALARM"
     }
   ]
